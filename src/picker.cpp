@@ -348,7 +348,7 @@ button createmenu_buttons[] =
         button("SAVE TEAM", KEYSTATE_UNKNOWN, 120, 100, 80, 15, CREATE_SAVE_MENU, -1, MenuNav::UpLeftRight(1, 3, 5)),
         button("GO", KEYSTATE_UNKNOWN,        210, 100, 80, 15, GO_MENU, -1, MenuNav::UpDownLeft(2, 8, 4)),
 
-        button("BACK", KEYSTATE_ESCAPE, 30, 140, 50, 30, RETURN_MENU, EXIT, MenuNav::UpRight(3, 7)),
+        button("BACK", KEYSTATE_ESCAPE, 30, 140, 60, 30, RETURN_MENU, EXIT, MenuNav::UpRight(3, 7)),
         button("PROGRESS", KEYSTATE_UNKNOWN, 120, 140, 80, 20, CREATE_PROGRESS_MENU, -1, MenuNav::UpLeftRight(4, 6, 8)),
         button("SET LEVEL", KEYSTATE_UNKNOWN, 210, 140, 80, 20, DO_SET_SCEN_LEVEL, EXIT, MenuNav::UpDownLeft(5, 9, 7)),
         button("SET CAMPAIGN", KEYSTATE_UNKNOWN, 210, 170, 80, 20, DO_PICK_CAMPAIGN, EXIT, MenuNav::UpLeft(8, 7)),
@@ -1200,7 +1200,8 @@ Sint32 create_progress_menu(Sint32 arg1)
 
             // Count enemies
             int num_enemies = 0;
-            getLevelStats(ld, NULL, NULL, &num_enemies, NULL, *(new std::list<int>()));
+            std::list<int> unused_exits;
+            getLevelStats(ld, NULL, NULL, &num_enemies, NULL, unused_exits);
             lp.num_enemies = lp.is_cleared ? 0 : num_enemies;
         } else {
             snprintf(lp.title, 24, "Level %d", level_id);
